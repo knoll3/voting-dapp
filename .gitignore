@@ -227,4 +227,4 @@ package-lock.json
 
 # End of https://www.toptal.com/developers/gitignore/api/node,solidity,soliditytruffle,react
 
-client/contracts/
+client/src/contracts/
