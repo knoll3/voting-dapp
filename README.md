@@ -1,6 +1,6 @@
-# React - Typescript - Web3
+# Voting Dapp
 
-A Starterkit for my personal web3 projects.
+Building out the frontend for a [simple voting smart contract](https://docs.soliditylang.org/en/v0.8.6/solidity-by-example.html#voting). 
 
 ### Includes
 
