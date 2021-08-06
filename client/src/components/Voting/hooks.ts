@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Contract } from "web3-eth-contract";
 
 // The change event for a material UI select element
 type SelectChangeEvent = React.ChangeEvent<{
@@ -32,4 +33,24 @@ export function useSelectedAccount(
     }, [accounts, selectedAccount]);
 
     return [selectedAccount, onChangeAccount];
+}
+
+export function useChairperson(instance: Contract | null): string {
+    const [chairperson, setChairperson] = useState("");
+
+    useEffect(() => {
+        (async () => {
+            if (!instance) return "";
+            try {
+                const _chairperson = await instance.methods
+                    .chairperson()
+                    .call();
+                setChairperson(_chairperson);
+            } catch (error) {
+                console.error(error);
+            }
+        })();
+    }, [instance]);
+
+    return chairperson;
 }

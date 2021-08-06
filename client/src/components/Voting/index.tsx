@@ -9,21 +9,32 @@ import {
     Select,
     Typography,
 } from "@material-ui/core";
-import { useSelectedAccount } from "./hooks";
+import { useChairperson, useSelectedAccount } from "./hooks";
+import { useBallotInstance } from "hooks/useBallotInstance";
 
 export const Voting: React.FC = () => {
     const classes = useStyles();
 
     const web3 = useWeb3();
     const accounts = useAccounts(web3);
+    const instance = useBallotInstance(web3);
+    const chairperson = useChairperson(instance);
 
     const [selectedAccount, onChangeAccount] = useSelectedAccount(accounts);
 
-    const parseAccount = useCallback((account: string): string => {
-        return `${account.substring(0, 6)}...${account.substring(
-            account.length - 4
-        )}`;
-    }, []);
+    const parseAccount = useCallback(
+        (account: string): string => {
+            let name = `${account.substring(0, 6)}...${account.substring(
+                account.length - 4
+            )}`;
+
+            // If the selected account is the chairperson, show that in the select menu
+            if (account === chairperson) name = "Chairperson";
+
+            return name;
+        },
+        [accounts, chairperson]
+    );
 
     return (
         <div className={classes.voting}>
