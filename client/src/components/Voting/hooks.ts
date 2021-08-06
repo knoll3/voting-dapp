@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Contract } from "web3-eth-contract";
 
 // The change event for a material UI select element
-type SelectChangeEvent = React.ChangeEvent<{
+export type SelectChangeEvent = React.ChangeEvent<{
     name?: string | undefined;
     value: unknown;
 }>;
