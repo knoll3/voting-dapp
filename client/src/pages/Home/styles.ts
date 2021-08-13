@@ -1,7 +1,10 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
-    home: {},
+    home: {
+        height: "100%",
+        overflowY: "auto",
+    },
     appBar: {
         background: theme.palette.background.paper,
         display: "flex",
@@ -19,8 +22,21 @@ export const useStyles = makeStyles((theme) => ({
         width: 900,
         marginLeft: "auto",
         marginRight: "auto",
+        display: "flex",
+        flexDirection: "column",
     },
     title: {
         marginBottom: theme.spacing(3),
+    },
+    header: {
+        display: "flex",
+        alignItems: "center",
+        marginBottom: theme.spacing(3),
+    },
+    proposalsContainer: {
+        textAlign: "left",
+    },
+    bottomMargin: {
+        height: 300,
     },
 }));

@@ -1,7 +1,8 @@
-import { AppBar, Box, Divider, Paper, Typography } from "@material-ui/core";
-import { Voting } from "components/Voting";
 import React from "react";
 import { useStyles } from "./styles";
+import { AppBar, Box, Divider, Paper, Typography } from "@material-ui/core";
+import { Status } from "components/Status";
+import { Proposals } from "components/Proposals";
 
 export const HomePage: React.FC = () => {
     const classes = useStyles();
@@ -13,17 +14,33 @@ export const HomePage: React.FC = () => {
                 </Typography>
             </AppBar>
             <div className={classes.content}>
-                <Typography
-                    color="textPrimary"
-                    variant="h4"
-                    className={classes.title}
-                >
-                    Voting Dapp
-                </Typography>
+                <div className={classes.header}>
+                    <Box
+                        display="flex"
+                        flexDirection="column"
+                        alignItems="flex-start"
+                        mr={6}
+                    >
+                        <Box mb={3}>
+                            <Typography variant="h4">Voting Dapp</Typography>
+                        </Box>
+                        <Typography align="left" variant="body2">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat.
+                        </Typography>
+                    </Box>
+                    <Status />
+                </div>
                 <Divider />
-                <Box mt={3}>
-                    <Voting />
-                </Box>
+                <div className={classes.proposalsContainer}>
+                    <Box mt={1} mb={3}>
+                        <Typography variant="h6">Proposals</Typography>
+                    </Box>
+                    <Proposals />
+                </div>
             </div>
         </div>
     );

@@ -15,4 +15,9 @@ export const darkTheme = createTheme({
             secondary: "#bbbbbb",
         },
     },
+    typography: {
+        allVariants: {
+            color: "#bbbbbb",
+        },
+    },
 });
