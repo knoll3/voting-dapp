@@ -4,9 +4,15 @@ import { AppBar, Box, Divider, Paper, Typography } from "@material-ui/core";
 import { Status } from "components/Status";
 import { Proposals } from "components/Proposals";
 import { Voters } from "components/Voters";
+import { useWeb3 } from "hooks/useWeb3";
+import { useAccount } from "hooks/useAccount";
 
 export const HomePage: React.FC = () => {
     const classes = useStyles();
+
+    const web3 = useWeb3();
+    const account = useAccount(web3);
+
     return (
         <div className={classes.home}>
             <AppBar className={classes.appBar} position="static">
