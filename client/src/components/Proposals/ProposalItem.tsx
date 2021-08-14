@@ -12,9 +12,13 @@ import { Proposal } from "types/Proposal";
 
 interface ProposalProps {
     proposal: Proposal;
+    disabled?: boolean;
 }
 
-export const ProposalItem: React.FC<ProposalProps> = ({ proposal }) => {
+export const ProposalItem: React.FC<ProposalProps> = ({
+    proposal,
+    disabled,
+}) => {
     const classes = useStyles();
 
     return (
@@ -37,7 +41,7 @@ export const ProposalItem: React.FC<ProposalProps> = ({ proposal }) => {
                 <Typography variant="body2">
                     <b>{proposal.voteCount} votes</b>
                 </Typography>
-                <Button variant="contained" size="small">
+                <Button disabled={disabled} variant="contained" size="small">
                     Vote Now
                 </Button>
             </Box>

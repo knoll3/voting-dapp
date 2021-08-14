@@ -11,8 +11,8 @@ export const darkTheme = createTheme({
             default: "#2f343d",
         },
         text: {
-            primary: "#dddddd",
-            secondary: "#bbbbbb",
+            primary: "#bbbbbb",
+            secondary: "#888888",
         },
     },
     typography: {
