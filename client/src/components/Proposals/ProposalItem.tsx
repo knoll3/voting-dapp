@@ -25,7 +25,9 @@ export const ProposalItem: React.FC<ProposalProps> = ({ proposal }) => {
                 </Typography>
             </Box>
             <Box className={classes.description}>
-                <Typography variant="body2">{proposal.description}</Typography>
+                <Typography variant="body2">
+                    {proposal.description || ""}
+                </Typography>
             </Box>
             <Box
                 display="flex"

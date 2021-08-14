@@ -4,34 +4,17 @@ import { AppBar, Box, Divider, Paper, Typography } from "@material-ui/core";
 import { ProposalItem } from "./ProposalItem";
 import { Proposal } from "types/Proposal";
 
-export const Proposals: React.FC = () => {
-    const classes = useStyles();
+interface ProposalsProps {
+    proposals: Proposal[];
+}
 
-    const proposals: Proposal[] = [
-        {
-            name: "Proposal 1",
-            description:
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            voteCount: 3,
-        },
-        {
-            name: "Proposal 2",
-            description:
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            voteCount: 15,
-        },
-        {
-            name: "Proposal 3",
-            description:
-                "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            voteCount: 11,
-        },
-    ];
+export const Proposals: React.FC<ProposalsProps> = ({ proposals }) => {
+    const classes = useStyles();
 
     return (
         <div className={classes.proposals}>
-            {proposals.map((proposal) => (
-                <ProposalItem proposal={proposal} />
+            {proposals.map((proposal, i) => (
+                <ProposalItem key={i} proposal={proposal} />
             ))}
         </div>
     );
