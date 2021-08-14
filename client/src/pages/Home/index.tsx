@@ -3,6 +3,7 @@ import { useStyles } from "./styles";
 import { AppBar, Box, Divider, Paper, Typography } from "@material-ui/core";
 import { Status } from "components/Status";
 import { Proposals } from "components/Proposals";
+import { Voters } from "components/Voters";
 
 export const HomePage: React.FC = () => {
     const classes = useStyles();
@@ -41,7 +42,15 @@ export const HomePage: React.FC = () => {
                     </Box>
                     <Proposals />
                 </div>
+                <Divider />
+                <div className={classes.votersContainer}>
+                    <Box mt={1} mb={3}>
+                        <Typography variant="h6">Voters</Typography>
+                    </Box>
+                    <Voters />
+                </div>
             </div>
+            <div className={classes.bottomMargin} />
         </div>
     );
 };

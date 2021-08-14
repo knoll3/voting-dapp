@@ -36,6 +36,9 @@ export const useStyles = makeStyles((theme) => ({
     proposalsContainer: {
         textAlign: "left",
     },
+    votersContainer: {
+        textAlign: "left",
+    },
     bottomMargin: {
         height: 300,
     },
