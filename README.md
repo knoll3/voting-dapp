@@ -1,6 +1,6 @@
 # Voting Dapp
 
-Building out the frontend for a [simple voting smart contract](https://docs.soliditylang.org/en/v0.8.6/solidity-by-example.html#voting). 
+Building out the frontend for a [simple voting smart contract](https://docs.soliditylang.org/en/v0.8.6/solidity-by-example.html#voting).
 
 ### Includes
 
@@ -9,10 +9,10 @@ Building out the frontend for a [simple voting smart contract](https://docs.soli
 -   Web3
 -   Material UI
 
-### Setup
+### Local Setup
 
 1. Use Ganache to run a local network
-2. Make sure the port listed in `truffle-config.js` matches the port Ganache is running on. Ganache defaults to 7545, truffle defaults to 8545
+2. Use Metamask to connect to the port Ganache is running on. GUI default should be 7545, CLI default should be 8545.
 3. Make sure the account being used has some eth in it
 4. Compile the contracts
 
