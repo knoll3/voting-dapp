@@ -5,19 +5,30 @@ import { ProposalItem } from "./ProposalItem";
 import { Proposal } from "types/Proposal";
 import { Role } from "types/Role";
 import { Voter } from "types/Voter";
+import { Contract } from "web3-eth-contract";
 
 interface ProposalsProps {
     proposals: Proposal[];
     role: Role;
     voter: Voter | null;
+    instance: Contract | null;
+    account: string;
 }
 
 export const Proposals: React.FC<ProposalsProps> = ({
     proposals,
     role,
     voter,
+    instance,
+    account,
 }) => {
     const classes = useStyles();
+
+    const onVote = (proposal: Proposal) => {
+        if (instance) {
+            instance.methods.vote(proposal.index).send({ from: account });
+        }
+    };
 
     let roleIndicator;
     switch (role) {
@@ -40,7 +51,8 @@ export const Proposals: React.FC<ProposalsProps> = ({
                 {roleIndicator}
                 {voter && role != Role.Viewer ? (
                     <Typography>
-                        Your voting weight is {voter.weight}
+                        Your voting weight is {voter.weight}.{" "}
+                        {voter.voted && "You have already voted."}
                     </Typography>
                 ) : (
                     <></>
@@ -51,7 +63,10 @@ export const Proposals: React.FC<ProposalsProps> = ({
                     <ProposalItem
                         key={i}
                         proposal={proposal}
-                        disabled={role === Role.Viewer}
+                        disabled={
+                            role === Role.Viewer || !!(voter && voter.voted)
+                        }
+                        onVote={onVote}
                     />
                 ))}
             </div>

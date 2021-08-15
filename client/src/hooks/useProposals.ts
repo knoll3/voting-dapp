@@ -21,6 +21,7 @@ export function useProposals(
                     const data = await instance.methods.proposals(i).call();
                     const proposal: Proposal = {
                         name: toUtf8(data.name),
+                        index: i,
                         description:
                             "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                         voteCount: data.voteCount,

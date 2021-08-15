@@ -13,11 +13,13 @@ import { Proposal } from "types/Proposal";
 interface ProposalProps {
     proposal: Proposal;
     disabled?: boolean;
+    onVote: (proposal: Proposal) => void;
 }
 
 export const ProposalItem: React.FC<ProposalProps> = ({
     proposal,
     disabled,
+    onVote,
 }) => {
     const classes = useStyles();
 
@@ -41,7 +43,12 @@ export const ProposalItem: React.FC<ProposalProps> = ({
                 <Typography variant="body2">
                     <b>{proposal.voteCount} votes</b>
                 </Typography>
-                <Button disabled={disabled} variant="contained" size="small">
+                <Button
+                    disabled={disabled}
+                    variant="contained"
+                    size="small"
+                    onClick={() => onVote(proposal)}
+                >
                     Vote Now
                 </Button>
             </Box>

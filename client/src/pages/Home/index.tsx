@@ -70,6 +70,8 @@ export const HomePage: React.FC = () => {
                         proposals={proposals}
                         role={role}
                         voter={voter}
+                        instance={instance}
+                        account={account}
                     />
                 </div>
             </div>
