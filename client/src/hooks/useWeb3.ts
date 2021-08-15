@@ -25,7 +25,7 @@ export function useWeb3(): Web3 | null {
                 // Modern dapp browsers...
                 const _web3 = new Web3(ethereum);
                 try {
-                    await ethereum.enable();
+                    ethereum.request({ method: "eth_requestAccounts" });
                     setWeb3(_web3);
                 } catch (error) {
                     console.error(error);
@@ -43,6 +43,23 @@ export function useWeb3(): Web3 | null {
             }
         })();
     }, []);
+
+    // Reload the page if network has been changed
+    // https://docs.metamask.io/guide/ethereum-provider.html#events
+    useEffect(() => {
+        if (!window.ethereum) return;
+
+        const handleChainChanged = () => {
+            window.location.reload();
+        };
+
+        window.ethereum.on("chainChanged", handleChainChanged);
+
+        // Remove the listener
+        return () => {
+            window.ethereum.removeListener("chainChanged", handleChainChanged);
+        };
+    });
 
     return web3;
 }
