@@ -1,13 +1,6 @@
 import React from "react";
 import { useStyles } from "./styles";
-import {
-    AppBar,
-    Box,
-    Button,
-    Divider,
-    Paper,
-    Typography,
-} from "@material-ui/core";
+import { Box, Button, Paper, Typography } from "@material-ui/core";
 import { Proposal } from "types/Proposal";
 
 interface ProposalProps {

@@ -28,7 +28,7 @@ export function useBallotInstance(web3: Web3 | null): Contract | null {
                 console.error(error);
             }
         })();
-    }, [web3]);
+    }, [web3, BallotContract.abi, BallotContract.networks, instance]);
 
     return instance;
 }

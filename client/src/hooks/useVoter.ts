@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Proposal } from "types/Proposal";
+import { useCallback, useEffect, useState } from "react";
 import { Voter } from "types/Voter";
 import { Contract } from "web3-eth-contract";
 
@@ -11,7 +10,7 @@ export function useVoter(
 
     // updateVoter is returned from this hook and may be used elsewhere.
     // For example: updateVoter should be called when a voter's vote is confirmed
-    const updateVoter = async () => {
+    const updateVoter = useCallback(async () => {
         if (!instance) return;
         if (account === "") return;
         const data = await instance.methods.voters(account).call();
@@ -23,11 +22,11 @@ export function useVoter(
             vote: data.vote,
         };
         setVoter(voter);
-    };
+    }, [instance, account]);
 
     useEffect(() => {
         updateVoter();
-    }, [instance, account]);
+    }, [updateVoter]);
 
     return [voter, updateVoter];
 }

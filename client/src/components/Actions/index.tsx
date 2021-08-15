@@ -2,7 +2,6 @@ import React from "react";
 import { useStyles } from "./styles";
 import { Box, Button, Typography } from "@material-ui/core";
 import { Role } from "types/Role";
-import { Contract } from "web3-eth-contract";
 import { VoterDialog } from "./VoterDialog";
 import { Voter } from "types/Voter";
 

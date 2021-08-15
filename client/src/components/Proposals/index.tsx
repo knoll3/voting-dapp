@@ -5,14 +5,11 @@ import { ProposalItem } from "./ProposalItem";
 import { Proposal } from "types/Proposal";
 import { Role } from "types/Role";
 import { Voter } from "types/Voter";
-import { Contract } from "web3-eth-contract";
 
 interface ProposalsProps {
     proposals: Proposal[];
     role: Role;
     voter: Voter | null;
-    instance: Contract | null;
-    account: string;
     onVote: (proposal: Proposal) => void;
 }
 
@@ -20,8 +17,6 @@ export const Proposals: React.FC<ProposalsProps> = ({
     proposals,
     role,
     voter,
-    instance,
-    account,
     onVote,
 }) => {
     const classes = useStyles();
@@ -45,7 +40,7 @@ export const Proposals: React.FC<ProposalsProps> = ({
         <div>
             <Box display="flex" justifyContent="space-between" mb={3}>
                 {roleIndicator}
-                {voter && role != Role.Viewer ? (
+                {voter && role !== Role.Viewer ? (
                     <Typography>
                         Your voting weight is {voter.weight}.{" "}
                         {voter.voted && "You have already voted."}

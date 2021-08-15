@@ -1,6 +1,6 @@
 import React from "react";
 import { useStyles } from "./styles";
-import { AppBar, Box, Divider, Paper, Typography } from "@material-ui/core";
+import { Box, Divider, Typography } from "@material-ui/core";
 import { Proposals } from "components/Proposals";
 import { useWeb3 } from "hooks/useWeb3";
 import { useAccount } from "hooks/useAccount";
@@ -105,8 +105,6 @@ export const HomePage: React.FC = () => {
                         proposals={proposals}
                         role={role}
                         voter={voter}
-                        instance={instance}
-                        account={account}
                         onVote={onVote}
                     />
                 </div>

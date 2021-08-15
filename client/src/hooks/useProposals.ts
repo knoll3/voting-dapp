@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Proposal } from "types/Proposal";
-import { Voter } from "types/Voter";
 import { Contract } from "web3-eth-contract";
 import { toUtf8 } from "web3-utils";
 
@@ -12,7 +11,7 @@ export function useProposals(
 
     // updateProposals is returned from this hook and may be used elsewhere.
     // For example: updateProposals should be called when a voter's vote is confirmed
-    const updateProposals = async () => {
+    const updateProposals = useCallback(async () => {
         if (!instance) return;
 
         const _proposals: any[] = [];
@@ -33,11 +32,11 @@ export function useProposals(
             }
         }
         setProposals(_proposals);
-    };
+    }, [instance, proposalsLength]);
 
     useEffect(() => {
         updateProposals();
-    }, [instance]);
+    }, [updateProposals]);
 
     return [proposals, updateProposals];
 }
