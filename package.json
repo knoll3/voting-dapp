@@ -1,6 +1,12 @@
 {
-  "dependencies": {
-    "@material-ui/icons": "^4.11.2",
-    "@truffle/hdwallet-provider": "^1.4.3"
-  }
+    "scripts": {
+        "start": "cd client && npm start",
+        "build": "cd client && npm build",
+        "test": "cd client && npm test",
+        "eject": "cd client && npm eject"
+    },
+    "dependencies": {
+        "@material-ui/icons": "^4.11.2",
+        "@truffle/hdwallet-provider": "^1.4.3"
+    }
 }
