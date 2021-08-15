@@ -74,6 +74,7 @@ export const Actions: React.FC<ActionsProps> = ({
                         onClick={onClickDelegate}
                         className={classes.button}
                         variant="contained"
+                        disabled={!!(voter && voter.voted)}
                     >
                         Delegate
                     </Button>
@@ -88,6 +89,7 @@ export const Actions: React.FC<ActionsProps> = ({
                         onClick={onClickDelegate}
                         className={classes.button}
                         variant="contained"
+                        disabled={!!(voter && voter.voted)}
                     >
                         Delegate
                     </Button>
