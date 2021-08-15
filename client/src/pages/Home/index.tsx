@@ -10,6 +10,7 @@ import { useVoter } from "hooks/useVoter";
 import { useProposals } from "hooks/useProposals";
 import { Actions } from "components/Actions";
 import { Role } from "types/Role";
+import { Proposal } from "types/Proposal";
 
 export const HomePage: React.FC = () => {
     const classes = useStyles();
@@ -18,8 +19,20 @@ export const HomePage: React.FC = () => {
     const instance = useBallotInstance(web3);
     const chairperson = useChairperson(instance);
     const account = useAccount(web3);
-    const voter = useVoter(instance, account);
-    const proposals = useProposals(instance, 3);
+    const [voter, updateVoter] = useVoter(instance, account);
+    const [proposals, updateProposals] = useProposals(instance, 3);
+
+    const onVote = (proposal: Proposal) => {
+        if (instance) {
+            instance.methods
+                .vote(proposal.index)
+                .send({ from: account })
+                .on("receipt", () => {
+                    updateVoter();
+                    updateProposals();
+                });
+        }
+    };
 
     let isChairperson = false;
     if (account && account !== "" && chairperson && chairperson !== "") {
@@ -72,6 +85,7 @@ export const HomePage: React.FC = () => {
                         voter={voter}
                         instance={instance}
                         account={account}
+                        onVote={onVote}
                     />
                 </div>
             </div>

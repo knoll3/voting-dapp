@@ -13,6 +13,7 @@ interface ProposalsProps {
     voter: Voter | null;
     instance: Contract | null;
     account: string;
+    onVote: (proposal: Proposal) => void;
 }
 
 export const Proposals: React.FC<ProposalsProps> = ({
@@ -21,14 +22,9 @@ export const Proposals: React.FC<ProposalsProps> = ({
     voter,
     instance,
     account,
+    onVote,
 }) => {
     const classes = useStyles();
-
-    const onVote = (proposal: Proposal) => {
-        if (instance) {
-            instance.methods.vote(proposal.index).send({ from: account });
-        }
-    };
 
     let roleIndicator;
     switch (role) {
