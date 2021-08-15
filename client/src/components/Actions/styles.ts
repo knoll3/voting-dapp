@@ -9,4 +9,10 @@ export const useStyles = makeStyles((theme) => ({
     button: {
         width: 200,
     },
+    dialog: {
+        width: 500,
+    },
+    textfield: {
+        width: 325,
+    },
 }));

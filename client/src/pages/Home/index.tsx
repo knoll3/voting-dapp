@@ -8,7 +8,6 @@ import { useBallotInstance } from "hooks/useBallotInstance";
 import { useChairperson } from "hooks/useChairperson";
 import { useVoter } from "hooks/useVoter";
 import { useProposals } from "hooks/useProposals";
-import { useVoters } from "hooks/useVoters";
 import { Actions } from "components/Actions";
 import { Role } from "types/Role";
 
@@ -21,7 +20,6 @@ export const HomePage: React.FC = () => {
     const account = useAccount(web3);
     const voter = useVoter(instance, account);
     const proposals = useProposals(instance, 3);
-    const voters = useVoters(instance);
 
     let isChairperson = false;
     if (account && account !== "" && chairperson && chairperson !== "") {
@@ -37,11 +35,6 @@ export const HomePage: React.FC = () => {
 
     return (
         <div className={classes.home}>
-            <AppBar className={classes.appBar} position="static">
-                <Typography color="textPrimary" className={classes.appBarTitle}>
-                    Beans
-                </Typography>
-            </AppBar>
             <div className={classes.content}>
                 <div className={classes.header}>
                     <Box
@@ -60,7 +53,12 @@ export const HomePage: React.FC = () => {
                             nostrud exercitation ullamco laboris nisi ut aliquip
                             ex ea commodo consequat.
                         </Typography>
-                        <Actions role={role} />
+                        <Actions
+                            role={role}
+                            instance={instance}
+                            voter={voter}
+                            account={account}
+                        />
                     </Box>
                 </div>
                 <Divider />
