@@ -34,6 +34,28 @@ export const HomePage: React.FC = () => {
         }
     };
 
+    const onDelegate = (address: string) => {
+        if (instance) {
+            instance.methods
+                .delegate(address)
+                .send({ from: account })
+                .on("receipt", () => {
+                    updateVoter();
+                });
+        }
+    };
+
+    const onAddVoter = (address: string) => {
+        if (instance) {
+            instance.methods
+                .giveRightToVote(address)
+                .send({ from: account })
+                .on("receipt", () => {
+                    updateVoter();
+                });
+        }
+    };
+
     let isChairperson = false;
     if (account && account !== "" && chairperson && chairperson !== "") {
         isChairperson = account.toLowerCase() === chairperson.toLowerCase();
@@ -68,9 +90,9 @@ export const HomePage: React.FC = () => {
                         </Typography>
                         <Actions
                             role={role}
-                            instance={instance}
                             voter={voter}
-                            account={account}
+                            onDelegate={onDelegate}
+                            onAddVoter={onAddVoter}
                         />
                     </Box>
                 </div>

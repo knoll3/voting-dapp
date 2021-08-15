@@ -8,16 +8,16 @@ import { Voter } from "types/Voter";
 
 interface ActionsProps {
     role: Role;
-    instance: Contract | null;
     voter: Voter | null;
-    account: string;
+    onDelegate: (address: string) => void;
+    onAddVoter: (address: string) => void;
 }
 
 export const Actions: React.FC<ActionsProps> = ({
     role,
-    instance,
     voter,
-    account,
+    onDelegate,
+    onAddVoter,
 }) => {
     const classes = useStyles();
     const [addVoterOpen, setAddVoterOpen] = React.useState(false);
@@ -29,11 +29,9 @@ export const Actions: React.FC<ActionsProps> = ({
         setAddVoterOpen(true);
     };
 
-    const onAddVoter = (address: string) => {
+    const onSubmitAddVoter = (address: string) => {
         setAddVoterOpen(false);
-        if (instance) {
-            instance.methods.giveRightToVote(address).send({ from: account });
-        }
+        onAddVoter(address);
     };
 
     const onAddVoterClose = () => {
@@ -44,11 +42,9 @@ export const Actions: React.FC<ActionsProps> = ({
         setDelegateOpen(true);
     };
 
-    const onDelegate = (address: string) => {
+    const onSubmitDelegate = (address: string) => {
         setDelegateOpen(false);
-        if (instance) {
-            instance.methods.delegate(address).send({ from: account });
-        }
+        onDelegate(address);
     };
 
     const onDelegateClose = () => {
@@ -110,7 +106,7 @@ export const Actions: React.FC<ActionsProps> = ({
             <VoterDialog
                 open={addVoterOpen}
                 onClose={onAddVoterClose}
-                onSubmit={onAddVoter}
+                onSubmit={onSubmitAddVoter}
                 title="Add Voter"
                 actionText="Add"
                 helperText="Paste the address of the voter to give the right to vote"
@@ -118,7 +114,7 @@ export const Actions: React.FC<ActionsProps> = ({
             <VoterDialog
                 open={delegateOpen}
                 onClose={onDelegateClose}
-                onSubmit={onDelegate}
+                onSubmit={onSubmitDelegate}
                 title="Delegate"
                 actionText="Delegate"
                 helperText={`Paste the address of the voter to delegate your votes. This will delegate ALL your votes to the receiver. Your voting weight is ${
